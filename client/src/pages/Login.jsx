@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styles from "./Register.module.css";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useSnapshot, proxy } from "valtio";
@@ -24,7 +23,7 @@ export default function Login() {
     else {
       try {
         const response = await axios.post(
-          `http://localhost:3001/user/login`,
+          `https://backend-3d-tshirt-app.onrender.com/user/login`,
           details
         );
 
@@ -53,7 +52,6 @@ export default function Login() {
   return (
     <>
       <div className="font-montserrat">
-        <ToastContainer autoClose={2000} />
         <div className={styles.mainContainer}>
           <div
             className={styles.registerBox}

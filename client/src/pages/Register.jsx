@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./Register.module.css";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +24,7 @@ export default function Register() {
     else {
       try {
         const response = await axios.post(
-          `http://localhost:3001/user/register`,
+          `https://backend-3d-tshirt-app.onrender.com/user/register`,
           details
         );
         if (response.data.success === false) toast.error(response.data.message);
@@ -40,7 +40,6 @@ export default function Register() {
 
   return (
     <div className="font-montserrat">
-      <ToastContainer autoClose={2000} />
       <div className={styles.mainContainer}>
         <div
           className={styles.registerBox}

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSnapshot } from "valtio";
 import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
 import config from "../config/config";
 import state from "../store";
 import { download } from "../assets";
@@ -44,7 +43,7 @@ const Customizer = () => {
   const savefun = async (color, token) => {
     console.log("Clicked", color);
     try {
-      const response = await axios.post(`http://localhost:3001/user/updateColor`, {
+      const response = await axios.post(`https://backend-3d-tshirt-app.onrender.com/user/updateColor`, {
         token,
         color,
       });
