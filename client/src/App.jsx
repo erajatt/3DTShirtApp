@@ -32,13 +32,12 @@ function HomeContent() {
 }
 
 function AppContent() {
-  const user = window.localStorage.getItem("userID");
 
   return (
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/home" element={user?<HomeContent />:<Navigate to="/" />} />
+      <Route path="/home" element={window.localStorage.getItem("userID")?<HomeContent />:<Navigate to="/" />} />
     </Routes>
   );
 }
