@@ -23,8 +23,11 @@ export default function Login() {
       toast.error("Please enter all the fields");
     else {
       try {
-        const response = await axios.post("http://localhost:3001/user/login", details);
-        
+        const response = await axios.post(
+          `http://localhost:3001/user/login`,
+          details
+        );
+
         if (response.data.success === false)
           toast.error(
             "Invalid Email-id or password. Please double-check your credentials."
@@ -33,10 +36,10 @@ export default function Login() {
           console.log(response.data);
           setCookies("access_token", response.data.token);
           window.localStorage.setItem("userID", response.data.userID);
-          
+
           // Update T-shirt color in the state using set function
           state.color = response.data.tshirtColor.hex;
-          
+
           navigate("/home");
           toast.success("Login successful");
         }

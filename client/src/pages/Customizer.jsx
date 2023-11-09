@@ -9,12 +9,7 @@ import { download } from "../assets";
 import { downloadCanvasToImage, reader } from "../config/helpers";
 import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
-import {
-  ColorPicker,
-  CustomButton,
-  FilePicker,
-  Tab,
-} from "../components";
+import { ColorPicker, CustomButton, FilePicker, Tab } from "../components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -26,7 +21,7 @@ const Customizer = () => {
   const [prompt, setPrompt] = useState("");
   const [generatingImg, setGeneratingImg] = useState(false);
   const [cookieValue, setCookieValue] = useState("");
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const [activeEditorTab, setActiveEditorTab] = useState("");
   const [activeFilterTab, setActiveFilterTab] = useState({
@@ -49,7 +44,7 @@ const Customizer = () => {
   const savefun = async (color, token) => {
     console.log("Clicked", color);
     try {
-      const response = await axios.post("http://localhost:3001/user/updateColor", {
+      const response = await axios.post(`http://localhost:3001/user/updateColor`, {
         token,
         color,
       });

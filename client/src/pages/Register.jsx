@@ -24,7 +24,7 @@ export default function Register() {
     else {
       try {
         const response = await axios.post(
-          "http://localhost:3001/user/register",
+          `http://localhost:3001/user/register`,
           details
         );
         if (response.data.success === false) toast.error(response.data.message);
