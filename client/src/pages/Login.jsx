@@ -6,10 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useSnapshot, proxy } from "valtio";
 import { useCookies } from "react-cookie";
+import state from "../store/index.js";
 
-const state = proxy({
-  color: "#EFBD48", // Define your initial state properties here
-});
+
 
 export default function Login() {
   const [details, setDetails] = useState({ email: "", password: "" });
@@ -37,10 +36,11 @@ export default function Login() {
           window.localStorage.setItem("userID", response.data.userID);
 
           // Update T-shirt color in the state using set function
-          state.color = response.data.tshirtColor.hex;
-
-          navigate("/home");
+          state.color = response.data.tshirtColor;
+          console.log(response.data);
+          
           toast.success("Login successful");
+          navigate("/home");
         }
       } catch (error) {
         toast.error("Something went wrong! Please try again.");
