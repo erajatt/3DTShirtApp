@@ -32,7 +32,7 @@ function HomeContent() {
 }
 
 function AppContent() {
-  const user = window.localStorage.userID;
+  const user = window.localStorage.getItem("userID");
 
   return (
     <Routes>
