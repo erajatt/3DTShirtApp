@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./register.module.css";
+import styles from "./Register.module.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
