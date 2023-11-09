@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import styles from "./register.module.css";
+import styles from "./Register.module.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
