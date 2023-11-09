@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { lazy } from "react";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
@@ -38,7 +38,7 @@ function AppContent() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/home" element={<HomeContent />} />
+      <Route path="/home" element={user?<HomeContent />:<Navigate to="/" />} />
     </Routes>
   );
 }
