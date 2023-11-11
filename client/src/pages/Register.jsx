@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./Register.module.css";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 export default function Register() {
   const [details, setDetails] = useState({
@@ -11,6 +12,7 @@ export default function Register() {
     name: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -23,6 +25,7 @@ export default function Register() {
       toast.error("Password must be at least 8 characters");
     else {
       try {
+        setLoading(true);
         const response = await axios.post(
           `https://backend-3d-tshirt-app.onrender.com/user/register`,
           details
@@ -34,6 +37,8 @@ export default function Register() {
         }
       } catch (error) {
         toast.error("Something went wrong! Please try again.");
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -79,8 +84,22 @@ export default function Register() {
               required
             />
           </div>
-          <button className={styles.submit} onClick={register}>
-            Register
+          <button
+            className={styles.submit}
+            disabled={loading}
+            onClick={register}
+          >
+            {loading ? (
+              <Loading
+                color={"#000"}
+                height={"40%"}
+                width={"20%"}
+                divHeight={"20px"}
+                divWidth={"128px"}
+              />
+            ) : (
+              "Register"
+            )}
           </button>
           <div className={styles.already}>Already Registered?</div>
           <a href="/" className={styles.login}>

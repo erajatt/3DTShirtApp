@@ -7,13 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { useSnapshot, proxy } from "valtio";
 import { useCookies } from "react-cookie";
 import state from "../store/index.js";
-
-
+import Loading from "../components/Loading.jsx";
 
 export default function Login() {
   const [details, setDetails] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const snap = useSnapshot(state);
+  const [loading, setLoading] = useState(false);
   const [, setCookies] = useCookies(["access_token"]);
 
   const login = async () => {
@@ -21,6 +21,7 @@ export default function Login() {
       toast.error("Please enter all the fields");
     else {
       try {
+        setLoading(true);
         const response = await axios.post(
           `https://backend-3d-tshirt-app.onrender.com/user/login`,
           details
@@ -38,13 +39,15 @@ export default function Login() {
           // Update T-shirt color in the state using set function
           state.color = response.data.tshirtColor;
           console.log(response.data);
-          
+
           toast.success("Login successful");
           navigate("/home");
         }
       } catch (error) {
         toast.error("Something went wrong! Please try again.");
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -84,8 +87,22 @@ export default function Login() {
               />
             </div>
 
-            <button className={styles.submit} onClick={login}>
-              Login
+            <button
+              className={styles.submit}
+              onClick={login}
+              disabled={loading}
+            >
+              {loading ? (
+                <Loading
+                  color={"#000"}
+                  height={"40%"}
+                  width={"20%"}
+                  divHeight={"20px"}
+                  divWidth={"128px"}
+                />
+              ) : (
+                "Login"
+              )}
             </button>
 
             <div className="already">Not registered yet?</div>
