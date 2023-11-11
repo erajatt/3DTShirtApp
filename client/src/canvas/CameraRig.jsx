@@ -6,6 +6,7 @@ import { useSnapshot } from 'valtio';
 import state from '../store';
 
 
+
 const CameraRig = ({ children }) => {
 
     const group = useRef();
@@ -27,7 +28,7 @@ const CameraRig = ({ children }) => {
         }
 
         // Set model camera position
-        easing.damp3(state.camera.position, targetPosition, 0.25, delta)
+        easing.damp4 (state.camera.position, targetPosition, 0.25, delta)
 
         // set the model rotation smoothly 
         easing.dampE(
