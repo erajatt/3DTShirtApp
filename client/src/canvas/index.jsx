@@ -3,7 +3,6 @@ import { Environment, Center, OrbitControls } from '@react-three/drei';
 
 import Shirt from './Shirt';
 import Backdrop from './Backdrop';
-import CameraRig from './CameraRig';
 
 
 const CanvasModel = () => {
