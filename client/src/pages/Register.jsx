@@ -30,13 +30,14 @@ export default function Register() {
           `https://backend-3d-tshirt-app.onrender.com/user/register`,
           details
         );
+        console.log(response.data)
         if (response.data.success === false) toast.error(response.data.message);
         else {
           navigate("/");
           toast.success("Registration successful. Login to continue.");
         }
       } catch (error) {
-        toast.error("Something went wrong! Please try again.");
+        toast.error(error.response.data.message);
       } finally {
         setLoading(false);
       }

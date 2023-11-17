@@ -8,19 +8,16 @@ dotenv.config();
 const userRegisterControl = async (req, res) => {
   try {
     const { email, password, name } = req.body;
-
-    // Check if the email is already in use
     const existingUser = await userModel.findOne({ email });
 
     if (existingUser) {
       console.log("User already exists!");
-      return res.status(400).json({
+      return res.status(409).json({
         message: `User with email ${email} already exists!`,
         success: false,
       });
     }
 
-    // Hash the user's password before saving it to the database
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new userModel({
@@ -37,7 +34,6 @@ const userRegisterControl = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.error("Error: ", error.message);
     return res.status(500).json({
       message: "Some error occurred. Please try again.",
       success: false,

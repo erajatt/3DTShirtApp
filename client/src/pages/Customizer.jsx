@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSnapshot } from "valtio";
 import { toast } from "react-toastify";
-import config from "../config/config";
 import state from "../store";
-import { download } from "../assets";
-import { downloadCanvasToImage, reader } from "../config/helpers";
+import { reader } from "../config/helpers";
 import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
 import { ColorPicker, CustomButton, FilePicker, Tab } from "../components";
@@ -43,10 +41,13 @@ const Customizer = () => {
   const savefun = async (color, token) => {
     console.log("Clicked", color);
     try {
-      const response = await axios.post(`https://backend-3d-tshirt-app.onrender.com/user/updateColor`, {
-        token,
-        color,
-      });
+      const response = await axios.post(
+        `https://backend-3d-tshirt-app.onrender.com/user/updateColor`,
+        {
+          token,
+          color,
+        }
+      );
       console.log(response.data);
       if (response.data.success) {
         toast.success("Design successfully saved");
