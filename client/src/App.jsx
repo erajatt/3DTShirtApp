@@ -1,14 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { lazy } from "react";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-// import { Canvas } from "@react-three/fiber";
 import CanvasModel from "./canvas";
 import Customizer from "./pages/Customizer";
 import { ToastContainer } from "react-toastify";
-
-// const HomeContent = lazy(() => import("./pages/HomeContent"));
 
 function App() {
   return (
@@ -37,7 +33,7 @@ function AppContent() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/home" element={<HomeContent />} />
+      <Route path="/home" element={window.localStorage.getItem("userID")?<HomeContent />:<Navigate to="/" />} />
     </Routes>
   );
 }

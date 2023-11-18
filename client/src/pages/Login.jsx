@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./Register.module.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { useSnapshot, proxy } from "valtio";
 import { useCookies } from "react-cookie";
 import state from "../store/index.js";
 import Loading from "../components/Loading.jsx";
@@ -12,7 +11,6 @@ import Loading from "../components/Loading.jsx";
 export default function Login() {
   const [details, setDetails] = useState({ email: "", password: "" });
   const navigate = useNavigate();
-  const snap = useSnapshot(state);
   const [loading, setLoading] = useState(false);
   const [, setCookies] = useCookies(["access_token"]);
 
