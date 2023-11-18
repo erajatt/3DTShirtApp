@@ -37,7 +37,7 @@ function AppContent() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/home" element={window.localStorage.getItem("userID")?<HomeContent />:<Navigate to="/" />} />
+      <Route path="/home" element={<HomeContent />} />
     </Routes>
   );
 }
